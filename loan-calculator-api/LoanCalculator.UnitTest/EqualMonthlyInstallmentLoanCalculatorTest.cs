@@ -1,5 +1,4 @@
 using LoanCalculator.Core;
-using System;
 using Xunit;
 
 namespace LoanCalculator.UnitTest

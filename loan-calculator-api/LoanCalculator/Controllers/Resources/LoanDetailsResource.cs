@@ -8,10 +8,10 @@ namespace LoanCalculator.Controllers.Resources
         [Range(0, double.MaxValue)]
         public double PrincipalLoanAmount { get; set; }
         [Required]
-        [Range(0, (double)100)]
+        [Range(0, double.MaxValue)]
         public double InterestRate { get; set; }
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public int NumberOfPayments { get; set; }
         [Required]
         [Range(1, 100)]

@@ -1,5 +1,4 @@
-﻿using System;
-using LoanCalculator.Core.Repositories;
+﻿using LoanCalculator.Core.Repositories;
 
 namespace LoanCalculator.Core
 {

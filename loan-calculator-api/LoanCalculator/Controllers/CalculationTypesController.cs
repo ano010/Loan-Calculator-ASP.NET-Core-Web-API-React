@@ -1,9 +1,5 @@
 ﻿using LoanCalculator.Core;
-using LoanCalculator.Persistence;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
 
 namespace LoanCalculator.Controllers
 {

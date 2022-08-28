@@ -1,10 +1,6 @@
 ﻿using LoanCalculator.Controllers.Resources;
 using LoanCalculator.Core;
-using LoanCalculator.Persistence;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
 
 namespace LoanCalculator.Controllers
 {
@@ -20,7 +16,7 @@ namespace LoanCalculator.Controllers
         }
 
         [HttpPost]
-        public IActionResult CalculateLoanInstallment(LoanDetailsResource loanDetails)
+        public IActionResult CalculateLoanInstallment([FromBody] LoanDetailsResource loanDetails)
         {
             var calculationType = this._unitOfWork.CalculationTypes.FindById(1);
             if (calculationType == null)
