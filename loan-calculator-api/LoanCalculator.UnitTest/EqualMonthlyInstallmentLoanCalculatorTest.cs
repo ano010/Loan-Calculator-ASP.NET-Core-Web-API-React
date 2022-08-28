@@ -18,5 +18,19 @@ namespace LoanCalculator.UnitTest
 
 
         }
+
+        [Fact]
+        public void CalculateLoanInstallment_Returns_Zero_Monthly_Installement_Loan_Amount()
+        {
+            var equalMonthlyInstallmentLoanCalculator = new EqualMonthlyInstallmentLoanCalculator();
+            equalMonthlyInstallmentLoanCalculator.PrincipalLoanAmount = 0;
+            equalMonthlyInstallmentLoanCalculator.InterestRate = 6;
+            equalMonthlyInstallmentLoanCalculator.NumberOfPayments = 6;
+
+            var amount = equalMonthlyInstallmentLoanCalculator.CalculateLoanInstallment();
+            Assert.Equal(0, amount);
+
+
+        }
     }
 }
