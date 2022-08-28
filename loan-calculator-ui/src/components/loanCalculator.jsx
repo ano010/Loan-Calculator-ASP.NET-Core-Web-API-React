@@ -11,15 +11,24 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const schema = yup.object().shape({
   calculationType: yup.string().required().label("Calculation Type"),
-  principalLoanAmount: yup.number().required().label("Principal Loan Amount"),
-  interestRate: yup.number().required().label("Interest Rate"),
-  numberOfPayments: yup.number().required().label("Number of Payments"),
+  principalLoanAmount: yup
+    .number()
+    .min(0)
+    .required()
+    .label("Principal Loan Amount"),
+  interestRate: yup.number().positive().required().label("Interest Rate"),
+  numberOfPayments: yup
+    .number()
+    .positive()
+    .min(1)
+    .required()
+    .label("Number of Payments"),
 });
 
 const LoanCalculator = () => {
   const [calculationTypes, setCalculationTypes] = useState([]);
-  const [monthPayment, setMonthPayment] = useState(0);
-  const [isLoading, setIsLoding] = useState();
+  const [monthPayment, setMonthPayment] = useState();
+  const [isLoading, setIsLoding] = useState(false);
 
   const {
     register,
@@ -39,15 +48,20 @@ const LoanCalculator = () => {
     fetchData();
   }, []);
 
-  console.log(isLoading);
-
   const onSubmit = async (data) => {
     setIsLoding(true);
     const { data: monthPayment } = await calculateLoanInstallment(data);
-    setMonthPayment(monthPayment);
 
     //to demonstrate the loading behavior
-    setInterval(() => setIsLoding(false), 1000);
+    setTimeout(() => {
+      setMonthPayment(monthPayment);
+      setIsLoding(false);
+    }, 500);
+  };
+
+  const handleClear = () => {
+    reset();
+    setMonthPayment("");
   };
 
   return (
@@ -88,7 +102,7 @@ const LoanCalculator = () => {
           <button className="btn btn-primary m-2">Calculate</button>
 
           <button
-            onClick={() => reset()}
+            onClick={() => handleClear()}
             type="reset"
             className="btn btn-secondary m-2"
           >
